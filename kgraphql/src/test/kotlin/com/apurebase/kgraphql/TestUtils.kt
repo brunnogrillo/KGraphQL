@@ -49,7 +49,7 @@ fun <T>extractOrNull(map: Map<*,*>, path : String) : T? {
 }
 
 fun defaultSchema(block: SchemaBuilder<Unit>.() -> Unit): DefaultSchema {
-    return SchemaBuilder(block).build() as DefaultSchema
+    return SchemaBuilder<Unit>().apply(block).build() as DefaultSchema
 }
 
 fun assertNoErrors(map : Map<*,*>) {

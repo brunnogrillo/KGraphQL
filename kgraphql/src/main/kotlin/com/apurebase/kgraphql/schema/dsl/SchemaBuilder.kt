@@ -14,14 +14,13 @@ import kotlin.reflect.KClass
 /**
  * SchemaBuilder exposes rich DSL to setup GraphQL schema
  */
-class SchemaBuilder<Context : Any>(private val init: SchemaBuilder<Context>.() -> Unit) {
+open class SchemaBuilder<Context : Any>() {
 
     private val model = MutableSchemaDefinition()
 
     private var configuration = SchemaConfigurationDSL()
 
     fun build(): Schema {
-        init()
         return SchemaCompilation(configuration.build(), model.toSchemaDefinition()).perform()
     }
 
